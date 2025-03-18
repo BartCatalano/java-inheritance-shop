@@ -20,6 +20,10 @@ public static void main(String[] args) {
     System.out.println(Iphone.dettagliProdotto());
     System.out.println(Iphone.getPrezzoIvato());
     
+// istanzio una televisione di prova
+Televisione SamsungTv = new Televisione("MaximTv","Samsung", new BigDecimal(600), true,57);
+System.out.println(SamsungTv.dettagliProdotto());
+    System.out.println(SamsungTv.getPrezzoIvato());
 
 }
 }
