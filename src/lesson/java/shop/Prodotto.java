@@ -1,6 +1,7 @@
 package lesson.java.shop;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Random;
 
 // creo le var della superclasse condivise da tutte le sottoclassi
@@ -52,6 +53,17 @@ public BigDecimal getIva(){
 
 public int getCodice(){
     return this.codice;
+}
+
+public BigDecimal getPrezzoIvato(){
+    if(prezzo != null ){
+      return prezzo.add(prezzo.multiply(iva).setScale(2,RoundingMode.DOWN));
+    }
+    return null;
+ }
+
+public String dettagliProdotto(){
+    return codice +" - "+ nome + " " + marca;
 }
 
 
