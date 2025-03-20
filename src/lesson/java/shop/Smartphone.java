@@ -28,7 +28,7 @@ public class Smartphone extends Prodotto {
     }
 // faccio override del metodo dei dettagli per inserire i dettagli unici
     @Override 
-public String dettagliProdotto(){
+public String toString(){
     return codice +" - "+ nome + " " + marca + " " + memory +"Gb" +" " + codiceIMEI; 
 }
 }

@@ -28,7 +28,7 @@ public class Televisione extends Prodotto {
         return this.pollici;
     }
     @Override 
-    public String dettagliProdotto(){
+    public String toString(){
         return codice +" - "+ nome + " " + marca + " " + pollici + " pollici";
     }
 

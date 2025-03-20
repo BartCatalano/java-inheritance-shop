@@ -62,7 +62,7 @@ public BigDecimal getPrezzoIvato(){
     return null;
  }
 
-public String dettagliProdotto(){
+public String toString(){
     return codice +" - "+ nome + " " + marca;
 }
 

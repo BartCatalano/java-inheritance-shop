@@ -30,7 +30,7 @@ public void getCablate(boolean cablate){
 }
 
 @Override 
-public String dettagliProdotto(){
+public String toString(){
     return codice +" - "+ nome + " " + marca + " " + colore; 
 }
 
