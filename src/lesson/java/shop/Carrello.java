@@ -5,81 +5,68 @@ import java.util.Scanner;
 
 public class Carrello {
     public static void main(String[] args) {
-    //  creo un array di tipo Prodotto che contiene i prodotti selezionati
-    Prodotto[] prodotti = new Prodotto[2];
-    // creo il systemin per fare da scanner
- Scanner input = new Scanner(System.in);
+        Prodotto[] prodotti = new Prodotto[2];
+        Scanner input = new Scanner(System.in);
 
-//  creo un ciclo for che mi stampa il nome la mrca, il prezzo e la categoria
+        for (int i = 0; i < prodotti.length; i++) {
+            System.out.println("Nome del Prodotto: ");
+            String nome = input.nextLine();
 
-   for (int i = 0; i < prodotti.length; i++) {
-    // creo il systemout del nome del prodotto scannerizzato
-     System.out.println("Nome del Prodotto : ");
-        String nome = input.nextLine();
+            System.out.println("Marca del Prodotto: ");
+            String marca = input.nextLine();
 
-        System.out.println("Marca del Prodotto : ");
-        String marca = input.nextLine();
+            System.out.println("Prezzo del Prodotto senza IVA: ");
+            BigDecimal prezzo = new BigDecimal(input.nextLine());
 
-        System.out.println("Prezzo del Prodotto senza iva : ");
-          int prezzo = Integer.parseInt(input.nextLine());
+            System.out.println("A quale categoria appartiene? (scrivi tv, smartphone o cuffie)");
+            String categoriaProdotto = input.nextLine().toLowerCase();
 
-          System.out.println("A quale categoria appartiene? (scrivi Tv, Smartphone o cuffie )");
-          String categoriaProdotto = input.nextLine();
+            switch (categoriaProdotto) {
+                case "tv":
+                    System.out.println("Dimensioni della TV in pollici: ");
+                    int pollici = input.nextInt();
+                    input.nextLine(); // Consuma il newline
 
-          switch (categoriaProdotto.toLowerCase()){
-            
-            case "Tv":
+                    System.out.println("È Smart TV? (si/no): ");
+                    boolean SMART = input.nextLine().trim().equalsIgnoreCase("si");
 
-            System.out.println("Dimensioni della TV in pollici: ");
-            int pollici = Integer.parseInt(input.nextLine());
+                    prodotti[i] = new Televisione(nome, marca, prezzo, SMART, pollici);
+                    break;
 
-            System.out.println("è smart tv?: ");
-            boolean SMART = Boolean.parseBoolean(input.nextLine());
+                case "smartphone":
+                    System.out.println("Gigabyte di memoria: ");
+                    int memory = input.nextInt();
+                    input.nextLine(); // Consuma il newline
 
-            Televisione Tv = new Televisione(nome, marca, new BigDecimal(prezzo), SMART, pollici );
+                    prodotti[i] = new Smartphone(nome, marca, prezzo, memory);
+                    break;
 
-            break;
+                case "cuffie":
+                    System.out.println("Colore delle cuffie: ");
+                    String colore = input.nextLine();
 
-            case "smartphone":
+                    System.out.println("Sono Wireless? (si/no): ");
+                    boolean wireless = input.nextLine().trim().equalsIgnoreCase("si");
 
-            System.out.println("Gygabite di memoria : ");
-          int memory = Integer.parseInt(input.nextLine());
+                    prodotti[i] = new Cuffie(nome, marca, prezzo, wireless, colore);
+                    break;
 
-        
-          Smartphone smartphone = new Smartphone(nome, marca, new BigDecimal(prezzo), memory);
-
-          break;
-
-          case "cuffie":
-
-          System.out.println("colore delle cuffie: ");
-
-          String colore = input.nextLine();
-
-          System.out.println("Sono Wireless? (inserisci True o False)");
-
-          boolean cablate = Boolean.parseBoolean(input.nextLine());
-
-          Cuffie cuffie = new  Cuffie(nome, marca, new BigDecimal(prezzo), cablate, colore);
-
-          break;
-
-          }
-
-          System.out.println("---------------");
-
-        
-
-   }
-
-   input.close();
-
-System.out.println("Ecco il tuo carrello");
-for (int i = 0; i < prodotti.length; i++){
-    System.out.println(prodotti[i]);
-    System.out.println("---------------");
-}
-
+                default:
+                    System.out.println("Categoria non valida, riprova.");
+                    i--; // Per ripetere la richiesta
+                    continue;
             }
 
+            System.out.println("---------------");
+        }
+
+        input.close();
+
+        System.out.println("Ecco il tuo carrello:");
+        for (Prodotto prodotto : prodotti) {
+            System.out.println(prodotto);
+            System.out.println("---------------");
+        }
+    }
 }
+
